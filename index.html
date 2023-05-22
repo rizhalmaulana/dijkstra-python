@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perhitungan Rute Terpendek Lokasi Rawang Banjir</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        #map {
+            height: 80vh;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="m-4">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>IMPLEMENTASI ALGORITMA DJIKSTRA</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="btn-group mb-4">
+                                <button onclick="addAllMarkers()" href="#" class="btn btn-primary">Show Graph</button>
+                                <button onclick="addMarker()" href="#" class="btn btn-primary">Find Shortest Path</button>
+                            </div>
+                            <br>
+                            <label class="form-label">Lokasi :</label>
+                            <div class="input-group mb-3">
+                                <select class="form-select" name="start" id="start"></select>
+                                <span class="input-group-text">-></span>
+                                <select class="form-select" name="end" id="end"></select>
+                                </div>
+                            <button onclick="checkDistance()" href="#" class="btn btn-primary">Calculate Distance</button>
+                            <div class="input-group mt-4 w-25">
+                                <input type="number" class="form-control" id="distance" disabled>
+                                <span class="input-group-text" id="basicaddon2">Meters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Daftar Lokasi Rawan Banjir Kab. Karawang</h3>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Kecamatan</th>
+                                        <th scope="col">Path</th>
+                                        <th scope="col">Distance</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Inisialisasi map, simpan di div dengan id 'map'
+        var map = L.map("map").setView([-6.302148307466356, 107.30309800780918], 15);
+        // Menambah TileLayer(data map) ke map dari OpenStreetMap
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 17,
+            attribution: "© OpenStreetMap",
+        }).addTo(map);
+        // Membuat group untuk menyimpan semua marker yang ada di map
+        var markers = L.layerGroup().addTo(map);
+        // Menentukan Jarak Maranatha ke lokasi lain (Tabel & Select)
+        $.get('http://192.168.1.15:8080/dinsos', function(data) {
+            $.each(data.data, function(index, value) {
+                $('#start').append(new Option(value.end, value.node));
+                $('#end').append(new Option(value.end, value.node));
+
+                $('table tbody').append(
+                    '<tr>' +
+                    '<th scope="row">' + value.node + '</th>' +
+                    '<td>' + value.end + '</td>' +
+                    '<td>' + value.path + '</td>' +
+                    '<td>' + value.distance + '</td>' +
+                    '</tr>'
+                );
+            });
+        });
+    </script>
+    <script src="scripts/marker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
+</html>
