@@ -1,4 +1,5 @@
 import csv
+
 def read_csv_to_matrix(file):
     array = []
     with open(file) as csv_file:
