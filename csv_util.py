@@ -1,4 +1,5 @@
 import csv
+from fastapi.encoders import jsonable_encoder
 
 def read_csv_to_matrix(file):
     array = []

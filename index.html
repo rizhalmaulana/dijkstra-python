@@ -92,7 +92,7 @@
         // Membuat group untuk menyimpan semua marker yang ada di map
         var markers = L.layerGroup().addTo(map);
         // Menentukan Jarak Maranatha ke lokasi lain (Tabel & Select)
-        $.get('http://127.0.0.1:8000/dinsos', function(data) {
+        $.get('http://192.168.1.7:5000/dinsos', function(data) {
             $.each(data.data, function(index, value) {
                 $('#start').append(new Option(value.end, value.node));
                 $('#end').append(new Option(value.end, value.node));
