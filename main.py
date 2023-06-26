@@ -1,17 +1,20 @@
 from csv_util import read_csv_to_matrix, read_csv_header
 from algoritma import dijkstra, lintasan
+
 import networkx as nx
+import numpy as np
 import matplotlib.pyplot as plt
 import os
 
 def fetchAllNodes():
-    graf = read_csv_to_matrix('assets/Matriks.csv')
+    graf = read_csv_to_matrix('assets/Matrik.csv')
     return graf
 
 def shortestPath(start, end):
-    graf = read_csv_to_matrix('assets/Matriks.csv')
+    graf = read_csv_to_matrix('assets/Matrik.csv')
     
     simpul_dipilih = dijkstra(graf,start)
+    
     return {
         'start': start,
         'end': end,
@@ -20,54 +23,32 @@ def shortestPath(start, end):
     }
     
 def shortestPathtoAllNode(start):
-    graf = read_csv_to_matrix('assets/Matriks.csv')
-    node_names = read_csv_header('assets/Matriks.csv')
+    graf = read_csv_to_matrix('assets/Matrik.csv')
+    node_names = read_csv_header('assets/Matrik.csv')
     
     simpul_dipilih = dijkstra(graf, start)
-
-    print(f'Simpul {simpul_dipilih}')
-
     array = []
 
-    for i in range(len(simpul_dipilih) - 1):
-        # arr = list([
-        #     [0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2], 
-        #     [0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8], 
-        #     [0, 0, 0, 12, 8, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 5, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 13, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 7, 7], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 18, 13, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 51, 0, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], 
-        #     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        # ])
+    for i in range(len(simpul_dipilih)):
+        arr = list([[0, 1, 23, 24], [1, 2, 23, 24, 0], [2, 3, 4, 9], [3, 4, 5, 2], [4, 8, 9, 3, 2], [5, 6, 7, 3], [6, 7, 5], [7, 8, 6, 5], [8, 9, 7, 4], [9, 10, 8, 4, 2], [10, 11, 12, 9], [11, 12, 10], [12, 13, 14, 11, 10], [13, 15, 17, 12], [14, 15, 12], 
+                    [15, 16, 14, 13], [16, 17, 15], [17, 18, 16, 13], [18, 19, 23, 24, 17], [19, 20 ,21, 22, 18], [20, 21, 19], [21, 22, 20, 19], [22, 23, 21, 19], [23, 24, 18, 1, 0], [24, 23, 18, 1, 0]])
         
+        resultNan = np.array(simpul_dipilih[i][0])
+        resultNan = np.nan_to_num(resultNan, copy=True, posinf=0, neginf=0)
+        changeInt = int(resultNan)
+
         array.append({
             'node': i,
             'end': node_names[i],
-            # 'path': arr[i],
-            'path': lintasan(i, simpul_dipilih[i], simpul_dipilih),
-            'distance': simpul_dipilih[i][0]
+            'path': arr[i],
+            # 'path': lintasan(i, simpul_dipilih[i], simpul_dipilih),
+            'distance': changeInt
         })
 
+    print(f'Array result {array}')
+
     return {
-        'data': sort(array),
+        'data': array,
         'start': start
     }
    
@@ -187,7 +168,7 @@ def printGraph():
 # add_edge("V23", "V24", 2.59)
 
 # printGraph()
-# print(f'Reperesntasi matriks: {graph}')
+# print(f'Reperesntasi matrik: {graph}')
 
 
 def sort(graf, type='asc'):
@@ -209,8 +190,7 @@ def sort(graf, type='asc'):
     return new_graf
 
 def main():
-    port = int(os.environ.get('PORT', 5000))
-    run(app, host="0.0.0.0", port=port)
+    pass
  
 if __name__ == '__main__':
     main()

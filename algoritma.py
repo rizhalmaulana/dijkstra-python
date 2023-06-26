@@ -2,6 +2,7 @@ INFINITY = float('inf')
 
 def dijkstra(graf, awal) :
     L = [None] * len(graf)
+    
     for i in range(len(graf)) :
         L[i] = [INFINITY, None]
         
@@ -14,11 +15,11 @@ def dijkstra(graf, awal) :
             if L[j][0] < mini and j not in S:
                 mini = L[j][0]
                 minind = j
-        # [minind, , mini]
+        # [minind, mini]
         S.append(minind)
         
         for i in [l for l in range(len(graf)) if 1 not in S]:
-            if graf[minind][i] !=0:
+            if graf[minind][i] != 0:
                 if L[i][0] > L[minind][0] + graf[minind][i]:
                     L[i][0] = L[minind][0] + graf[minind][i]
                     L[i][1] = minind
