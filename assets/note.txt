@@ -1,0 +1,10 @@
+if you're using powershell (default for vscode), then you need to do a bit more work
+
+first you need to enable "running scripts" on your system (read this)
+
+you can do that with this (as admin):
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+then you can activate your venv with
+
+.\env\Scripts\activate.ps1

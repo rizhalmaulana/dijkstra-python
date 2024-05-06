@@ -43,7 +43,7 @@ function addAllMarkers() {
 
 function addAllPath() {
     // Meminta data get dari server.py
-    $.get("http://127.0.0.1:8080/list", function(data, status) {
+    $.get("http://192.168.119.236:8000/list", function(data, status) {
         $.each(data, function(i, value) {
             $.each(value, function(j, node) {
                 if (node != 0) {
@@ -65,8 +65,9 @@ function checkDistance() {
     let end = $("#end").val();
 
     // Meminta data get dari server.py
-    $.get(`http://127.0.0.1:8080/path?start=${start}&end=${end}`, function(data) {
-        $('#distance').val(data.distance);
+    $.get(`http://192.168.119.236:8000/path?start=${start}&end=${end}`, function(data) {
+        let distance = data.distance/100;
+        $('#distance').val(distance);
     });
 }
 
@@ -77,8 +78,9 @@ function addMarker() {
     let end = $("#end").val();
 
     // Meminta data get dari server.py
-    $.get(`http://127.0.0.1:8080/path?start=${start}&end=${end}`, function(data) {
-        $('#distance').val(data.distance);
+    $.get(`http://192.168.119.236:8000/path?start=${start}&end=${end}`, function(data) {
+        let distance = data.distance/100;
+        $('#distance').val(distance);
 
         $.each(data.path, function(i, value) {
             L.marker(nodes[value]).addTo(markers);

@@ -1,4 +1,5 @@
 # Import untuk membuat server
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -24,3 +25,6 @@ def shortest_path(start: int, end: int):
 @app.get("/dinsos")
 def dinsos():
     return shortestPathtoAllNode(0)
+
+if __name__ == '__main__':
+    uvicorn.run(app, host="192.168.119.236", port=8000)

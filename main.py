@@ -95,82 +95,6 @@ def printGraph():
             if graph[i][j] != 0:
                 print(f'{vertices[i]} -> {vertices[j]} => jarak: {graph[i][j]}')
 
-
-# vertices = []
-# vertices_no = 0
-# graph = []
-
-# add_vertex("V0"), 
-# add_vertex("V1"), 
-# add_vertex("V2"),
-# add_vertex("V3"), 
-# add_vertex("V4"),
-# add_vertex("V5"),
-# add_vertex("V6"), 
-# add_vertex("V7"), 
-# add_vertex("V8"),
-# add_vertex("V9"), 
-# add_vertex("V10"), 
-# add_vertex("V11"), 
-# add_vertex("V12"),
-# add_vertex("V13"), 
-# add_vertex("V14"), 
-# add_vertex("V15"), 
-# add_vertex("V16"), 
-# add_vertex("V17"),
-# add_vertex("V18"),
-# add_vertex("V19"),
-# add_vertex("V20"),
-# add_vertex("V21"), 
-# add_vertex("V22"), 
-# add_vertex("V23"),
-# add_vertex("V24"),
-
-# add_edge("V0", "V1", 4.31)
-# add_edge("V0", "V23", 4.03)
-# add_edge("V0", "V24", 2.67)
-# add_edge("V1", "V2", 8.41)
-# add_edge("V1", "V23", 8.07)
-# add_edge("V1", "V24", 8.44)
-# add_edge("V2", "V3", 12.43)
-# add_edge("V2", "V4", 8.60)
-# add_edge("V2", "V9", 13.24)
-# add_edge("V3", "V4", 5.26)
-# add_edge("V3", "V5", 15.62)
-# add_edge("V4", "V8", 9.55)
-# add_edge("V4", "V9", 8.90)
-# add_edge("V5", "V6", 12.99)
-# add_edge("V5", "V7", 8.70)
-# add_edge("V6", "V7", 18.73)
-# add_edge("V7", "V8", 14.10)
-# add_edge("V8", "V23", 6.93)
-# add_edge("V9", "V10", 15.86)
-# add_edge("V10", "V11", 7.10)
-# add_edge("V10", "V12", 8.46)
-# add_edge("V11", "V12", 8.25)
-# add_edge("V12", "V13", 8.99)
-# add_edge("V12", "V14", 7.07)
-# add_edge("V13", "V15", 5.07)
-# add_edge("V13", "V17", 6.21)
-# add_edge("V14", "V15", 5.58)
-# add_edge("V15", "V16", 4.15)
-# add_edge("V16", "V17", 3.67)
-# add_edge("V17", "V18", 5.43)
-# add_edge("V18", "V19", 2.54)
-# add_edge("V18", "V23", 7.30)
-# add_edge("V18", "V24", 7.83)
-# add_edge("V19", "V20", 20.13)
-# add_edge("V19", "V21", 18.25)
-# add_edge("V19", "V22", 13.36)
-# add_edge("V20", "V21", 5.19)
-# add_edge("V21", "V22", 14.92)
-# add_edge("V22", "V23", 6.63)
-# add_edge("V23", "V24", 2.59)
-
-# printGraph()
-# print(f'Reperesntasi matrik: {graph}')
-
-
 def sort(graf, type='asc'):
     new_graf = []
     for i in range(len(graf)):
@@ -188,9 +112,3 @@ def sort(graf, type='asc'):
         'distance': graf[i]['distance']
         })
     return new_graf
-
-def main():
-    pass
- 
-if __name__ == '__main__':
-    main()

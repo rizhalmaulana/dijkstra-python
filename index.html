@@ -51,11 +51,11 @@
                                 <select class="form-select" name="start" id="start"></select>
                                 <span class="input-group-text">-></span>
                                 <select class="form-select" name="end" id="end"></select>
-                                </div>
-                            <button onclick="checkDistance()" href="#" class="btn btn-primary">Calculate Distance</button>
-                            <div class="input-group mt-4 w-25">
+                            </div>
+                            <div class="input-group mt-4">
+                                <button onclick="checkDistance()" href="#" class="btn btn-primary">Calculate Distance</button>
                                 <input type="number" class="form-control" id="distance" disabled>
-                                <span class="input-group-text" id="basicaddon2">Meters</span>
+                                <span class="input-group-text" id="basicaddon2">Kilometers</span>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
         // Membuat group untuk menyimpan semua marker yang ada di map
         var markers = L.layerGroup().addTo(map);
         // Menentukan Jarak Maranatha ke lokasi lain (Tabel & Select)
-        $.get('http://127.0.0.1:8080/dinsos', function(data) {
+        $.get('http://192.168.119.236:8000/dinsos', function(data) {
             $.each(data.data, function(index, value) {
                 $('#start').append(new Option(value.end, value.node));
                 $('#end').append(new Option(value.end, value.node));
@@ -102,7 +102,7 @@
                     '<th scope="row">' + value.node + '</th>' +
                     '<td>' + value.end + '</td>' +
                     '<td>' + value.path + '</td>' +
-                    '<td>' + value.distance + '</td>' +
+                    '<td>' + value.distance/100 + '</td>' +
                     '</tr>'
                 );
             });
