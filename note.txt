@@ -1,0 +1,10 @@
+Step Running Program
+
+1. Buat 2 Terminal dalam VSCode.
+2. Pertama jalanin Virtual Environmet Di Terminal 1, caranya ketik .\dijkstraEnv\Scripts\Activate.ps1,
+lalu jika udah ada muncul (dijkstraEnv) di bagian pinggir kiri maka udah berhasil.
+3. Kemudian ketik ipconfig lalu copy ipv4 Address nya dan paste kan ke file server.py, ubah host=0.0.0.0
+dan paste in host nya pake ipv4, lalu ubah host dengan ipv4 dan portnya di index.html dan marker.js.
+4. Setelah itu coba ketik "python server.py" di terminal 1
+5. Setelah uvicorn jalan kita pindah ke terminal 2 buat jalanin web server nya
+6. Coba jalanin php -S ipv4:8001 lalu copy ip:portnya dan paste di browser
