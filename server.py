@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 # Import algoritma
-from main import fetchAllNodes, shortestPath, shortestPathtoAllNode
+from main import fetchAllNodes, shortestPath, shortestPathtoAllNode, checkDistanceMap
 
 # Inisialisasi server
 app = FastAPI()
@@ -22,9 +22,13 @@ def list():
 def shortest_path(start: int, end: int):
     return shortestPath(start, end)
 
+@app.get("/distance")
+def check_distance(start: int, end: int):
+    return checkDistanceMap(start, end)
+
 @app.get("/dinsos")
 def dinsos():
-    return shortestPathtoAllNode(0)
+    return shortestPathtoAllNode()
 
 if __name__ == '__main__':
     uvicorn.run(app, host="192.168.32.228", port=8005)

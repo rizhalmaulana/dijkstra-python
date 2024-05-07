@@ -42,7 +42,7 @@ function addAllMarkers() {
 }
 
 function addAllPath() {
-    // Meminta data get dari server.py
+    // Meminta data list node dari server.py
     $.get("http://192.168.32.228:8005/list", function(data, status) {
         $.each(data, function(i, value) {
             $.each(value, function(j, node) {
@@ -54,44 +54,36 @@ function addAllPath() {
     });
 }
 
-function deleteAllMarker() {
-    markers.clearLayers()
-}
-
-function checkDistance() {
-    deleteAllMarker();
-
-    let start = $("#start").val();
-    let end = $("#end").val();
-
-    // Meminta data get dari server.py
-    $.get(`http://192.168.32.228:8005/path?start=${start}&end=${end}`, function(data) {
-        let distance = data.distance/100;
-        $('#distance').val(distance);
-    });
-}
-
 function addMarker() {
     deleteAllMarker();
     
     let start = $("#start").val();
     let end = $("#end").val();
 
-    // Meminta data get dari server.py
-    $.get(`http://192.168.32.228:8005/path?start=${start}&end=${end}`, function(data) {
+    if (start && end) {
+        // Meminta data path dari server.py
+        checkDistance(start, end);
+
+        $.get(`http://192.168.32.228:8005/path?start=${start}&end=${end}`, function(data) {
+            addPath(data.lintasan);
+        });
+    }
+}
+
+function checkDistance(start, end) {
+    $.get(`http://192.168.32.228:8005/distance?start=${start}&end=${end}`, function(data) {
         let distance = data.distance/100;
         $('#distance').val(distance);
-
-        $.each(data.path, function(i, value) {
-            L.marker(nodes[value]).addTo(markers);
-        });
-        
-        addPath(data.path);
     });
 }
 
 function addPath(path) {
     $.each(path, function(i, value) {
+        L.marker(L.latLng(nodes[value])).addTo(markers).bindPopup(nodes[value][2]);
         L.polygon([nodes[value], nodes[path[i + 1]]]).addTo(markers);
     });
+}
+
+function deleteAllMarker() {
+    markers.clearLayers()
 }

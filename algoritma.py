@@ -31,7 +31,7 @@ def lintasan(akhir, simpul, graf_hasil):
     print(f"end: {akhir}")
     print(f"simpul awal: {simpul}")
     print("--------------------\n")
-            
+
     while simpul[1] != None:
         next_node = simpul[1]
         next_distance = graf_hasil[next_node][0]  # Jarak dari simpul awal ke simpul berikutnya
