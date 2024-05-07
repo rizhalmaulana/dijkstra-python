@@ -1,5 +1,12 @@
-Step Running Program
+- Route yang harus di Fixing
+1. Tirtamulya (done)
+2. Jatisari (done)
+3. Kotabaru (done)
+4. Cikampek (done)
+5. Purwasari (done)
+6. Telukjambe Barat (done)
 
+- Step Running Program
 1. Buat 2 Terminal dalam VSCode.
 2. Pertama jalanin Virtual Environmet Di Terminal 1, caranya ketik .\dijkstraEnv\Scripts\Activate.ps1,
 lalu jika udah ada muncul (dijkstraEnv) di bagian pinggir kiri maka udah berhasil.
@@ -7,4 +14,68 @@ lalu jika udah ada muncul (dijkstraEnv) di bagian pinggir kiri maka udah berhasi
 dan paste in host nya pake ipv4, lalu ubah host dengan ipv4 dan portnya di index.html dan marker.js.
 4. Setelah itu coba ketik "python server.py" di terminal 1
 5. Setelah uvicorn jalan kita pindah ke terminal 2 buat jalanin web server nya
-6. Coba jalanin php -S ipv4:8001 lalu copy ip:portnya dan paste di browser
+6. Coba jalanin php -S ipv4:8005 lalu copy ip:portnya dan paste di browser
+
+
+- Running uvicorn
+python3 -m uvicorn --reload server:app --host 192.168.32.228 --port 8005
+
+- Dataset backup
+V0 => Dinas Sosial Kabupaten Karawang, 
+V1 => Kecamatan Karawang Barat, 
+V2 => Kecamatan Rawamerta, 
+V3 => Kecamatan Rengasdengklok, 
+V4 => Kecamatan Kutawaluya, 
+V5 => Kecamatan Batujaya, 
+V6 => Kecamatan Pakisjaya, 
+V7 => Kecamatan Tirtajaya, 
+V8 => Kecamatan Pedes, 
+V9 => Kecamatan Cilebar, 
+V10 => Kecamatan Cilamaya Kulon, 
+V11 => Kecamatan Cilamaya Wetan, 
+V12 => Kecamatan Banyusari, 
+V13 => Kecamatan Tirtamulya, 
+V14 => Kecamatan Jatisari, 
+V15 => Kecamatan Kotabaru, 
+V16 => Kecamatan Cikampek, 
+V17 => Kecamatan Purwasari, 
+V18 => Kecamatan Klari, 
+V19 => Kecamatan Ciampel, 
+V20 => Kecamatan Tegalwaru, 
+V21 => Kecamatan Pangkalan, 
+V22 => Kecamatan Telukjambe Barat, 
+V23 => Kecamatan Telukjambe Timur, 
+V24 => Kecamatan Karawang Timur
+
+Dinas Sosial Kabupaten Karawang, Kecamatan Karawang Barat, Kecamatan Rawamerta, Kecamatan Rengasdengklok, Kecamatan Kutawaluya, Kecamatan Batujaya, Kecamatan Pakisjaya, Kecamatan Tirtajaya, Kecamatan Pedes, Kecamatan Cilebar, Kecamatan Cilamaya Kulon, Kecamatan Cilamaya Wetan, Kecamatan Banyusari, Kecamatan Tirtamulya, Kecamatan Jatisari, Kecamatan Kotabaru, Kecamatan Cikampek, Kecamatan Purwasari, Kecamatan Klari, Kecamatan Ciampel, Kecamatan Tegalwaru, Kecamatan Pangkalan, Kecamatan Telukjambe Barat, Kecamatan Telukjambe Timur, Kecamatan Karawang Timur
+0,431,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,403,267 -> Dinsos
+431,0,841,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,807,844 -> Karawang Barat
+0,841,0,1232,860,0,0,0,0,1324,0,0,0,0,0,0,0,0,0,0,0,0,0,0,844 -> Rawamerta
+0,0,1232,0,526,1562,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Rengasdengklok
+0,0,860,526,0,0,0,0,955,890,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Kutawaluya
+0,0,0,1562,0,0,1299,870,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Batujaya
+0,0,0,0,0,1299,0,1873,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Pakisjaya
+0,0,0,0,0,870,1873,0,1410,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Tirtajaya
+0,0,0,0,955,0,0,1410,0,693,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Pedes
+0,0,1324,0,890,0,0,0,693,0,1586,0,0,0,0,0,0,0,0,0,0,0,0,0,0 -> Cilebar
+0,0,0,0,0,0,0,0,0,1586,0,710,846,0,0,0,0,0,0,0,0,0,0,0,0 -> Cilamaya Kulon
+0,0,0,0,0,0,0,0,0,0,710,0,825,0,0,0,0,0,0,0,0,0,0,0,0 -> Cilamaya Wetan
+0,0,0,0,0,0,0,0,0,0,848,825,0,899,707,0,0,0,0,0,0,0,0,0,0 -> Banyusari
+0,0,0,0,0,0,0,0,0,0,0,0,899,0,0,507,0,621,0,0,0,0,0,0,0 -> Tirtamulya
+0,0,0,0,0,0,0,0,0,0,0,0,707,0,0,558,0,0,0,0,0,0,0,0,0 -> Jatisari
+0,0,0,0,0,0,0,0,0,0,0,0,0,507,558,0,415,0,0,0,0,0,0,0,0 -> Kotabaru
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,415,0,367,0,0,0,0,0,0,0 -> Cikampek
+0,0,0,0,0,0,0,0,0,0,0,0,0,621,0,0,367,0,542,0,0,0,0,0,0 -> Purwasari
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,542,0,254,0,0,0,1200,960 -> Klari
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,254,0,2013,1825,1336,0,0 -> Ciampel
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2013,0,519,0,0,0 -> Tegalwaru
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1825,519,0,1492,0,0 -> Pangkalan
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1336,0,1492,0,663,0 -> Telukjambe Barat
+403,807,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,663,1200,0,0,0,663,0,259 -> Telukjambe Timur
+267,844,844,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,960,0,0,0,0,259,0 -> Karawang Timur
+
+- Running env jika denied
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+then you can activate your venv with
+
+.\env\Scripts\activate.ps1

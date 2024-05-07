@@ -1,34 +1,50 @@
-INFINITY = float('inf')
+import heapq
 
-def dijkstra(graf, awal) :
-    L = [None] * len(graf)
+def dijkstra(graph, start):
+    INFINITY = 1e9
+    L = [[INFINITY, None] for _ in range(len(graph))]
+    L[start] = [0, None]
+    S = []
     
-    for i in range(len(graf)) :
-        L[i] = [INFINITY, None]
-        
-    L[awal] = [0, None]
-    S =[]
-    
-    for k in range(len(graf)):
+    for _ in range(len(graph)):
         mini = INFINITY
-        for j in range (len(graf)):
+        minind = None
+        for j in range(len(graph)):
             if L[j][0] < mini and j not in S:
                 mini = L[j][0]
                 minind = j
-        # [minind, mini]
+        if minind is None:
+            break
         S.append(minind)
         
-        for i in [l for l in range(len(graf)) if 1 not in S]:
-            if graf[minind][i] != 0:
-                if L[i][0] > L[minind][0] + graf[minind][i]:
-                    L[i][0] = L[minind][0] + graf[minind][i]
+        for i in range(len(graph)):
+            if graph[minind][i] != 0 and i not in S:
+                if L[i][0] > L[minind][0] + graph[minind][i]:
+                    L[i][0] = L[minind][0] + graph[minind][i]
                     L[i][1] = minind
-                    # L[i] = L[minind] + graf[minind][i]
     return L
 
 def lintasan(akhir, simpul, graf_hasil):
- array_simpul = [akhir]
- while simpul[1] != None:
-    array_simpul.append(simpul[1])
-    simpul = graf_hasil[simpul[1]]
- return array_simpul
+    array_simpul = [akhir]
+    current_distance = simpul[0]
+    
+    print(f"end: {akhir}")
+    print(f"simpul awal: {simpul}")
+    print("--------------------\n")
+            
+    while simpul[1] != None:
+        next_node = simpul[1]
+        next_distance = graf_hasil[next_node][0]  # Jarak dari simpul awal ke simpul berikutnya
+        
+        if next_distance > current_distance:
+            print("Jarak pada simpul berikutnya lebih besar dari jarak sebelumnya.")
+        
+        array_simpul.append(next_node)
+        simpul = graf_hasil[next_node]
+        
+        current_distance = next_distance  # Update jarak sekarang
+        
+        print(f"arr simpul: {array_simpul}")
+        print(f"simpul akhir: {simpul}")
+        print("-------------------\n")
+    return array_simpul

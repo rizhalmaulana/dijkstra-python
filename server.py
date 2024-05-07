@@ -27,4 +27,4 @@ def dinsos():
     return shortestPathtoAllNode(0)
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="192.168.119.236", port=8000)
+    uvicorn.run(app, host="192.168.32.228", port=8005)

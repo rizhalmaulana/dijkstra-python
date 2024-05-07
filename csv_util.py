@@ -11,7 +11,7 @@ def read_csv_to_matrix(file):
             if line_count != 0:
                 array.append([int(i) for i in row])
             line_count += 1
-    print(f'Processed {line_count} lines.')
+    # print(f'Processed {line_count} lines.')
     
     # return matrix
     return array
@@ -26,7 +26,7 @@ def read_csv_header(file):
             if line_count == 0:
                 array = row
             line_count += 1
-    print(f'Processed {line_count} lines.')
+    # print(f'Processed {line_count} lines.')
     return array
     
 def write_csv():
